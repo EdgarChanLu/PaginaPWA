@@ -50,14 +50,15 @@ self.addEventListener('activate', e=>{
     )
 });
 
-self.addEventListener( ' fetch ', e=> {
+self.addEventListener('fetch', e=> {
     e.respondWith (
         caches.match (e.request)
         .then(res => {
-        if(res){
-            return res;
-        }
-    return fetch(e.request);
+            if(res){
+                return res;
+            }
+            
+            return fetch(e.request);
         })
     );
 });
